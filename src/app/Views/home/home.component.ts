@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConsultasService } from 'app/Services/consultas.service';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
      pass: ''
    }
 
-  constructor( private authService: AuthService, private  _router: Router) { }
+  constructor( private authService: AuthService, private  _router: Router,
+               private ajax:ConsultasService) { }
 
 
   ngOnInit(): void {
