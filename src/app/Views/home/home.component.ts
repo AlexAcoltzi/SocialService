@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConsultasService } from 'app/Services/consultas.service';
-import { AuthService } from 'src/app/Services/auth/auth.service';
+import { AuthService } from 'app/Services/auth/auth.service';
+import { first } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-home',
@@ -18,7 +21,7 @@ export class HomeComponent implements OnInit {
    }
 
   constructor( private authService: AuthService, private  _router: Router,
-               private ajax:ConsultasService) { }
+               private ajax:ConsultasService, private toastr:ToastrService) { }
 
 
   ngOnInit(): void {
@@ -27,8 +30,19 @@ export class HomeComponent implements OnInit {
   logIn(): void{
     console.log(this.usuario);
     const {email, pass } = this.usuario;
-    this.authService.login(email,pass).then(res =>{
-      console.log(res);
+    this.ajax.Autenticarse(email,pass).
+    pipe(first()).
+    subscribe(data=>{
+      console.log(data[0]);
+      if(data[0].correo == ""){
+        this.toastr.error("La contraseña es incorrecta")
+      } else{
+        if (data[0].tipo == "Alumno") {
+          this._router.navigateByUrl('/estudiante');
+        }else if (data[0].tipo == "Profesor") {
+          this._router.navigateByUrl('#');
+        }
+      }
     })
   }
   googleLogIn(): void{
@@ -44,15 +58,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  obtenerUsuario(){
-    this.authService.getUserLogged().subscribe(res=> {
-      console.log(res?.email);
-    })
-  }
   logOut(){
     this.authService.logOut();
   }
-
-
 
 }
