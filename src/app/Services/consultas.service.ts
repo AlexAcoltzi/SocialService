@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 export class ConsultasService {
 
   //El puerto puede cambiar
-  baseURL:string = "http://localhost:81/PlataformaEducativa/";
+  baseURL:string = "http://localhost:8085/PlataformaEducativa/";
 
   constructor(private http: HttpClient) { }
 
