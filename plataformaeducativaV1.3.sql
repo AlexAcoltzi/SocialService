@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2022 a las 05:13:16
+-- Tiempo de generación: 29-03-2022 a las 04:20:54
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `plataformaeducativa`
 --
-DROP DATABASE IF EXISTS `platadormaeducative`;
+DROP DATABASE IF EXISTS `plataformaeducativa`;
 CREATE DATABASE IF NOT EXISTS `plataformaeducativa` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `plataformaeducativa`;
 
@@ -58,7 +58,7 @@ CREATE TABLE `alumno` (
 
 CREATE TABLE `archivocargado` (
   `idArchivoCargado` int(11) NOT NULL,
-  `Archivo` longblob NOT NULL
+  `Archivo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -69,7 +69,7 @@ CREATE TABLE `archivocargado` (
 
 CREATE TABLE `archivoguia` (
   `idArchivoGuia` int(11) NOT NULL,
-  `Archivo` longblob NOT NULL
+  `Archivo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -154,7 +154,7 @@ CREATE TABLE `usuario` (
   `Materno` varchar(45) NOT NULL,
   `Correo` varchar(45) NOT NULL,
   `Contrasenia` varchar(45) NOT NULL,
-  `Perfil` longblob DEFAULT NULL
+  `Perfil` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
