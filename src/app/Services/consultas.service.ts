@@ -8,7 +8,8 @@ import { map } from 'rxjs';
 export class ConsultasService {
 
   //El puerto puede cambiar
-  baseURL:string = "http://localhost:8085/PlataformaEducativa/";
+  baseURL:string = "http://165.232.137.66/PlataformaEducativa/";
+  valida:boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,14 @@ export class ConsultasService {
     .pipe(map(User=>{
       return User;
     }))
+  }
+
+  validator(user: any){
+    if(user != null){
+      this.valida = true;
+      return this.valida;
+    }
+    return this.valida;
   }
 
 }

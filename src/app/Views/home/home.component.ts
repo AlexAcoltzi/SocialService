@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
           this._router.navigateByUrl('#');
         }
       }
+      localStorage.setItem('data', JSON.stringify(data[0]));
     })
   }
   googleLogIn(): void{
@@ -50,7 +51,6 @@ export class HomeComponent implements OnInit {
     this.authService.loginWithGoogle().then(res =>{
       console.log(res);
       this._router.navigateByUrl('/estudiante')
-     
     })
  
      
