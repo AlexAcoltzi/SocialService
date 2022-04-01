@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
   }
   googleLogIn(): void{
     console.log(this.usuario);
+    localStorage.setItem('data', JSON.stringify(this.usuario));
     this.authService.loginWithGoogle().then(res =>{
       console.log(res);
       this._router.navigateByUrl('/estudiante')
@@ -59,6 +60,7 @@ export class HomeComponent implements OnInit {
   }
 
   logOut(){
+    localStorage.clear();
     this.authService.logOut();
   }
 
