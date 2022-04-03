@@ -19,7 +19,11 @@ export class ConsultasService {
     }))
   }
   cargarFoto(imagen: any, usuario: any){
-    return this.http.post<any>(this.baseURL+"editarPerfil.php",{imagen,usuario})
+    var json = {
+      "img": imagen,
+      "user": usuario};
+
+    return this.http.post<any>(this.baseURL+"editarPerfil.php",{"img": imagen,"usuario":usuario})
     .pipe(map(User=>{
       return User;
     }))

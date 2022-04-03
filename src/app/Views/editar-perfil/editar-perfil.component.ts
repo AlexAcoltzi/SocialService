@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth/auth.service';
 import { ConsultasService } from 'app/Services/consultas.service';
 import { first, pipe } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import * as $ from 'jquery';
+
 
 
 
@@ -15,7 +18,7 @@ import { first, pipe } from 'rxjs';
 export class EditarPerfilComponent implements OnInit {
   private image:any;
   userLogged=this.authService.getUserLogged();
-  constructor(private authService: AuthService,private  _router: Router,private ajax:ConsultasService) { }
+  constructor(private authService: AuthService,private  _router: Router,private ajax:ConsultasService,private http: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -28,21 +31,24 @@ export class EditarPerfilComponent implements OnInit {
 
 cambiarImagen(event:any):void{
   this.image = <File>event.target.files[0];
+  var instancia = this.ajax;
   var reader = new FileReader();
-  reader.readAsDataURL(this.image);
+  var data_64;
   reader.onload = function () {
-    console.log('Imageto64',reader.result);
-  };
-  reader.onerror = function (error) {
-    console.log('Error: ', error);
-  };
-
-
-  this.ajax.cargarFoto(reader.result,1);  
-console.log('Image', this.image);
-
+    var $data = { 'img': reader.result, 'usuario': 2 };
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:80/editarPerfil.php',
+        data: $data,
+        success: function() {
+            
+        },
+        error: function() {
+            
+        },
+    });
+};
+reader.readAsDataURL(this.image);    
 }
-
-
 
 }
