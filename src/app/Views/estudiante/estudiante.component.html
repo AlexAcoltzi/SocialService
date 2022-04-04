@@ -1,1 +1,16 @@
-<p class="ms-5">Bienvenido</p>
+<div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col align-self-center" *ngFor="let clase of clases; let i = index">
+        <div class=" card shadow mb-5" style="width: 18rem;">
+            <img src="https://wp-media.petersons.com/blog/wp-content/uploads/2018/10/10123812/iStock-837483562.jpg" class="card-img-top" >
+            <div class="card-body">
+              <h4 class="card-title">{{clase.nombre}}</h4>
+              <p class="card-text">Profesor: {{clase.docente}}</p>
+              <a href="#" class="btn bg-transparent stretched-link"></a>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+

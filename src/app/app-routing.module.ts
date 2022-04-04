@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'oferta', loadChildren: () => import('./Views/oferta/oferta.module').then(m => m.OfertaModule) },
   { path: 'estudiante', loadChildren: () => import('./Views/estudiante/estudiante.module').then(m => m.EstudianteModule) },
   { path: 'editarPerfil', loadChildren: () => import('./Views/editar-perfil/editar-perfil.module').then(m => m.EditarPerfilModule) },
+  { path: 'maestro', loadChildren: () => import('./Views/maestro/maestro.module').then(m => m.MaestroModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 
