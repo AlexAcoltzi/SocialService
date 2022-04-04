@@ -49,6 +49,7 @@ cambiarImagen(event:any):void{
     });
 };
 reader.readAsDataURL(this.image);    
+
 }
 
 }
