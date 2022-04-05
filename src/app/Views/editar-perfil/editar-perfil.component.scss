@@ -19,6 +19,9 @@ div {
             background-size: cover;
             background-position: center;
         }
+        input[type='file']{
+            display: none;
+        }
     }
 
 }

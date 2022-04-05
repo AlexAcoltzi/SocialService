@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
-import { BehaviorSubject, map, observable, Observable, of } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,16 @@ export class ConsultasService {
       if(User[0].contrasenia!= ""){
         this.saveData(JSON.stringify(User[0]));
       }
+      return User;
+    }))
+  }
+  cargarFoto(imagen: any, usuario: any){
+    var json = {
+      "img": imagen,
+      "user": usuario};
+
+    return this.http.post<any>(this.baseURL+"editarPerfil.php",{"img": imagen,"usuario":usuario})
+    .pipe(map(User=>{
       return User;
     }))
   }

@@ -37,7 +37,8 @@
                             </div>
                         </div>
                         <div class="modal-footer btn-toolbar" role="toolbar" style="margin: 5px;"><br>
-                        <button type="button" style="margin-right: 30px; width:120px; background-color: rgb(0, 59, 92); color:white; border-radius: 5px; border:0px; margin-top: 8px;"><span class="glyphicon glyphicon-pencil"></span>Cambiar</button>
+                        <input type="file" accept="image/*" #file (change)="cambiarImagen($event)"/> 
+                        <button type="button" style="margin-right: 30px; width:120px; background-color: rgb(0, 59, 92); color:white; border-radius: 5px; border:0px; margin-top: 8px;" (click)="file.click()"><span class="glyphicon glyphicon-pencil"></span>Cambiar</button>
                         <button type="button" style="float:right; margin-left: 30px; width:120px; background-color: rgb(0, 59, 92); color:white; border-radius: 5px; border:0px; margin-top: 8px;">Quitar <span class="glyphicon glyphicon-search"></span></button><br><br>
                         </div>
                     </div>
