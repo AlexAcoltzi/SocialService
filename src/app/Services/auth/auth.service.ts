@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+import { ConsultasService } from '../consultas.service';
+
 import firebase  from 'firebase/compat/app';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private afauth : AngularFireAuth ) { }
+  constructor(private afauth : AngularFireAuth, private ajax:ConsultasService) { }
 
   async login(email:string,pass:string) {
 
@@ -37,6 +40,7 @@ export class AuthService {
 
   logOut(){
     this.afauth.signOut();
+    this.ajax.deleteData();
   }
 
 }
