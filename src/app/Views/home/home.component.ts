@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConsultasService } from 'app/Services/consultas.service';
 import { AuthService } from 'app/Services/auth/auth.service';
-import { first } from 'rxjs';
+import { first, switchAll } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -21,21 +22,23 @@ export class HomeComponent implements OnInit {
    }
 
   constructor( private authService: AuthService, private  _router: Router,
-               private ajax:ConsultasService, private toastr:ToastrService) { }
+               private ajax:ConsultasService) { }
 
 
   ngOnInit(): void {
   }
 
   logIn(): void{
-    console.log(this.usuario);
     const {email, pass } = this.usuario;
     this.ajax.Autenticarse(email,pass).
     pipe(first()).
     subscribe(data=>{
-      console.log(data[0]);
-      if(data[0].correo == ""){
-        this.toastr.error("La contraseña es incorrecta")
+      if(data[0].matricula == ""){
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Verifica la contraseña'
+        });
       } else{
         if (data[0].tipo == "Alumno") {
           this._router.navigateByUrl('/estudiante');
@@ -47,10 +50,9 @@ export class HomeComponent implements OnInit {
   }
   googleLogIn(): void{
     console.log(this.usuario);
+    //this.ajax.saveData(JSON.stringify(this.usuario));
     this.authService.loginWithGoogle().then(res =>{
-      console.log(res);
       this._router.navigateByUrl('/estudiante')
-     
     })
  
      
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   logOut(){
+    localStorage.clear();
     this.authService.logOut();
   }
 
