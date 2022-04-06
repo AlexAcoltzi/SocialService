@@ -48,7 +48,9 @@
                 <div class="row" style="margin: 10px;">
                     <div class="col">
                         <!--Botón para cancelar la creación de la clase-->
-                        <button id="cancelar" >Cancelar</button>
+                        <a id="cancelar" [routerLink]="['/estudiante']">Cancelar </a>
+                        <!--Si ocupan en forma de botón seria asi-->
+                        <!--<button id="cancelar" type="reset"> Cancelar </button>-->
                     </div>
                     <div class="col">
                         <!--Botón que confirma y envia los datos-->
