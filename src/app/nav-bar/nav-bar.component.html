@@ -28,16 +28,17 @@
           </li>
           
         </ul>
-        <form class="d-flex me-5" *ngIf="userLogged|async as user" >
+        <form class="d-flex me-5" *ngIf="userLogged">
+          <script>console.log(userLogged)</script>
             <div class="dropdown d-flex me-5">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    {{user.email}}
+                    <!--<img src="{{user.photoURL}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                    {{user.email}}-->
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="#">Configuracion</a></li>
-                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                    <li><a class="dropdown-item" [routerLink]="['/editarPerfil']" >Perfil</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
