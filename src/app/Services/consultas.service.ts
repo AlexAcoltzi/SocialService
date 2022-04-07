@@ -8,9 +8,9 @@ import { BehaviorSubject, map } from 'rxjs';
 export class ConsultasService {
 
   //El puerto puede cambiar
+  //baseURL:string = "http://localhost:80/";
   baseURL:string = "http://165.232.137.66/PlataformaEducativa/";
   userLogged:BehaviorSubject<any> = new BehaviorSubject(false);
-
 
   constructor(private http: HttpClient) { }
 
