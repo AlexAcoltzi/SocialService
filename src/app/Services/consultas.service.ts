@@ -8,9 +8,9 @@ import { BehaviorSubject, map, observable, Observable, of } from 'rxjs';
 export class ConsultasService {
 
   //El puerto puede cambiar
+  //baseURL:string = "http://localhost:80/";
   baseURL:string = "http://165.232.137.66/PlataformaEducativa/";
   userLogged:BehaviorSubject<any> = new BehaviorSubject(false);
-
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +22,16 @@ export class ConsultasService {
       if(User[0].contrasenia!= ""){
         this.saveData(JSON.stringify(User[0]));
       }
+      return User;
+    }))
+  }
+  cargarFoto(imagen: any, usuario: any){
+    var json = {
+      "img": imagen,
+      "user": usuario};
+
+    return this.http.post<any>(this.baseURL+"editarPerfil.php",{"img": imagen,"usuario":usuario})
+    .pipe(map(User=>{
       return User;
     }))
   }
