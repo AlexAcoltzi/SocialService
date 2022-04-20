@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ConsultasService } from 'app/Services/consultas.service';
 import { AuthService } from 'app/Services/auth/auth.service';
 import { first, switchAll } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
 
@@ -43,7 +42,7 @@ export class HomeComponent implements OnInit {
         if (data[0].tipo == "Alumno") {
           this._router.navigateByUrl('/estudiante');
         }else if (data[0].tipo == "Profesor") {
-          this._router.navigateByUrl('#');
+          this._router.navigateByUrl('/maestro');
         }
       }
     })

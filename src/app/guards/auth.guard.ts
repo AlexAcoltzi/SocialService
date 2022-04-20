@@ -8,12 +8,19 @@ import { ConsultasService } from 'app/Services/consultas.service';
 })
 export class AuthGuard implements CanActivate {
 
+  canGuar:boolean = false;
+
   constructor( private ajax:ConsultasService ){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.ajax.validator();
+    this.ajax.userLogged.subscribe((data)=>{
+      if (data != false) {
+        this.canGuar = true;
+      }
+    });
+    return this.canGuar;
   }
   
 }

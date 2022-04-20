@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth/auth.service';
-import { ConsultasService } from 'app/Services/consultas.service';
-import { first, pipe } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import * as $ from 'jquery';
-
-
-
-
+import { EditarService } from 'app/Services/editar.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -16,9 +9,9 @@ import * as $ from 'jquery';
   styleUrls: ['./editar-perfil.component.scss']
 })
 export class EditarPerfilComponent implements OnInit {
-  private image:any;
+  image:any;
   userLogged=this.authService.getUserLogged();
-  constructor(private authService: AuthService,private  _router: Router,private ajax:ConsultasService,private http: HttpClient) { }
+  constructor(private authService: AuthService,private  _router: Router, private ajax:EditarService) { }
 
   ngOnInit(): void {
   }
@@ -29,27 +22,8 @@ export class EditarPerfilComponent implements OnInit {
   
 }
 
-cambiarImagen(event:any):void{
-  this.image = <File>event.target.files[0];
-  var instancia = this.ajax;
-  var reader = new FileReader();
-  var data_64;
-  reader.onload = function () {
-    var $data = { 'img': reader.result, 'usuario': 2 };
-    $.ajax({
-        type: 'POST',
-        url: 'http://localhost:80/editarPerfil.php',
-        data: $data,
-        success: function() {
-            
-        },
-        error: function() {
-            
-        },
-    });
-};
-reader.readAsDataURL(this.image);    
-
+cambiarImagen(event:any){
+  this.image = this.ajax.updateFoto(event);
 }
 
 }
