@@ -39,9 +39,9 @@ export class HomeComponent implements OnInit {
           text: 'Verifica la contraseña'
         });
       } else{
-        if (data[0].tipo == "Alumno") {
+        if (data[0].tipo == "estudiante") {
           this._router.navigateByUrl('/estudiante');
-        }else if (data[0].tipo == "Profesor") {
+        }else if (data[0].tipo == "maestro") {
           this._router.navigateByUrl('/maestro');
         }
       }
@@ -53,10 +53,6 @@ export class HomeComponent implements OnInit {
     this.authService.loginWithGoogle().then(res =>{
       this._router.navigateByUrl('/estudiante')
     })
- 
-     
-    
-
   }
 
   logOut(){

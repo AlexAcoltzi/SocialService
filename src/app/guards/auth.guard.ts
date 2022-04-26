@@ -16,9 +16,8 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.ajax.userLogged.subscribe((data)=>{
-      if (data != false) {
-        this.canGuar = true;
-      }
+      this.canGuar = data;
+      console.log(this.canGuar);
     });
     return this.canGuar;
   }
