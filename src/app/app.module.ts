@@ -7,6 +7,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,9 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(), 
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
