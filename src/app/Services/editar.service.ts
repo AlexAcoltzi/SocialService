@@ -17,9 +17,11 @@ export class EditarService {
   updateFoto(event: any){
     this.image = <File>event.target.files[0];
     var reader = new FileReader();
+    var data_64;
     //!nombre del archivo entre comillas
     reader.onload = (()=>{
-      return this.http.post<any>(this.baseURL+"",{}).
+
+      return this.http.post<any>(this.baseURL+"editarPerfil.php",{'img' : reader.result,'usuario' : 2}).
       subscribe(map((User: any)=>{
         return User;
       }))
