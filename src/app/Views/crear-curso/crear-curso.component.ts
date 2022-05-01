@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-curso',
@@ -10,9 +10,21 @@ export class CrearCursoComponent implements OnInit {
 
   formularioClase!: FormGroup;
 
+  CursoForm = new FormGroup({
+    NombreClase : new FormControl('', Validators.required),
+    Seccion : new FormControl('', Validators.required),
+    Materia : new FormControl('', Validators.required),
+    Datos : new FormControl('', Validators.required),
+    MatriculaProfesor : new FormControl('', Validators.required)
+  })
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  ObtenerDatos(form : any){
+    console.log(form)
   }
 
 }
