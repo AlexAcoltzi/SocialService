@@ -14,19 +14,21 @@ export class EditarService {
   constructor(private http: HttpClient) { }
 
 
-  updateFoto(event: any){
+  updateFoto(event: any, matricula:any){
     this.image = <File>event.target.files[0];
     var reader = new FileReader();
     var data_64;
     //!nombre del archivo entre comillas
     reader.onload = (()=>{
-
-      return this.http.post<any>(this.baseURL+"editarPerfil.php",{'img' : reader.result,'usuario' : 2}).
+      var $data = {'img' : reader.result,'usuario' : matricula};
+      return this.http.post<any>("http://localhost:80/editarPerfil.php",{'img' : reader.result,'usuario' : matricula}).
       subscribe(map((User: any)=>{
         return User;
       }))
     });
 
     return reader.readAsDataURL(this.image);
+    console.log("realizo correctamente el proceso");
+
   }
 }
