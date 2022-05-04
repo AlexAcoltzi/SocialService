@@ -15,11 +15,13 @@ export class EditarPerfilComponent implements OnInit {
   constructor(private authService: AuthService,private  _router: Router, private ajax:EditarService, private consultaService: ConsultasService) { }
   public data:any; // variable para almacenar los datos del usuario
   public nombre:String = ""; // variable para almacenar el nombre completo del susario
+  public matricula:String="";
 
   ngOnInit(): void {
     this.data = this.consultaService.getData(); // En este apartado obtenemos el objeto JSON con los datos del usuario
     console.log(this.data);
     this.nombre = this.data.nombre +" " + this.data.paterno + " " + this.data.materno; // Almacenando el nombre del usuario
+  this.matricula = this.data.matricula;
   }
   configurar(): void{
  
@@ -29,7 +31,12 @@ export class EditarPerfilComponent implements OnInit {
 }
 
 cambiarImagen(event:any){
-  this.image = this.ajax.updateFoto(event);
+  console.log("NNNN");
+
+  this.image = this.ajax.updateFoto(event,this.matricula);
+  console.log(this.matricula);
+
+
 }
 
 }
