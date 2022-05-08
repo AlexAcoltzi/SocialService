@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'crearCurso', loadChildren: () => import('./Views/crear-curso/crear-curso.module').then(m => m.CrearCursoModule) },
   { path: 'maestro', loadChildren: () => import('./Views/maestro/maestro.module').then(m => m.MaestroModule) },
   { path: 'curso_maestro', loadChildren: () => import('./Views/curso-maestro/curso-maestro.module').then(m => m.CursoMaestroModule) },
+  { path: 'curso_alumno', loadChildren: () => import('./Views/curso-alumno/curso-alumno.module').then(m => m.CursoAlumnoModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 
