@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { data } from 'jquery';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -21,7 +22,7 @@ export class EditarService {
     //!nombre del archivo entre comillas
     reader.onload = (()=>{
       var $data = {'img' : reader.result,'usuario' : matricula};
-      return this.http.post<any>("http://localhost:80/editarPerfil.php",{'img' : reader.result,'usuario' : matricula}).
+      return this.http.post<any>("http://165.232.137.66/PlataformaEducativa/editarPerfil.php",JSON.stringify($data)).
       subscribe(map((User: any)=>{
         return User;
       }))

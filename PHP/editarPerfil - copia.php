@@ -1,8 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-require_once("ConexionBD.php");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
 require_once("ruta.php");
 
 
@@ -13,15 +12,16 @@ require_once("ruta.php");
 
     $base_to_php = explode(',', $base64);
     $data = base64_decode($base_to_php[1]);
-    $path_Generico = getcwd();
+    //$path_Generico = getcwd();
     $path_img = "/User/".$usuario.".png";
-    $filepath = $path_Generico.''.$path_img;
+    //$filepath = $path_Generico.''.$path_img;
     $ruta = ruta();
 
     $path_database = $ruta.''.$path_img;
 
-    file_put_contents($filepath, $data);
+    file_put_contents($path_database, $data);
 
+    require_once("ConexionBD.php");
     $conexion = conexion();
     if(isset($base64)){
        if(mysqli_query($conexion, "UPDATE usuario SET Perfil = '$path_database' WHERE idUsuario = '$usuario'")){
