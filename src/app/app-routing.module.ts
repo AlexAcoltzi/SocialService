@@ -12,6 +12,11 @@ const routes: Routes = [
   { path: 'maestro', loadChildren: () => import('./Views/maestro/maestro.module').then(m => m.MaestroModule) },
   { path: 'curso_maestro', loadChildren: () => import('./Views/curso-maestro/curso-maestro.module').then(m => m.CursoMaestroModule) },
   { path: 'curso_alumno', loadChildren: () => import('./Views/curso-alumno/curso-alumno.module').then(m => m.CursoAlumnoModule) },
+  { path: 'tareas_maestro', loadChildren: () => import('./Views/tareas-maestro/tareas-maestro.module').then(m => m.TareasMaestroModule) },
+  { path: 'tareas_estudiante', loadChildren: () => import('./Views/tareas-estudiante/tareas-estudiante.module').then(m => m.TareasEstudianteModule) },
+  { path: 'lista_tareas_maestro', loadChildren: () => import('./Views/lista-tareas-maestro/lista-tareas-maestro.module').then(m => m.ListaTareasMaestroModule) },
+  { path: 'lista_tareas_alumno', loadChildren: () => import('./Views/lista-tareas-alumno/lista-tareas-alumno.module').then(m => m.ListaTareasAlumnoModule) },
+  { path: 'administrador', loadChildren: () => import('./Views/administrador/administrador.module').then(m => m.AdministradorModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 

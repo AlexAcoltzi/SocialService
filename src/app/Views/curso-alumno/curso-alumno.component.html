@@ -63,7 +63,7 @@
 
                   <div class="text-end mt-2">
                      <!--Debe direccionar a la pagina de tareas -->    
-                    <a href="#" class="card-link text-end">Ver Tareas</a>
+                    <a [routerLink]="['/lista_tareas_alumno']"  class="card-link text-end">Ver Tareas</a>
                   </div>
                   
                 </div>
@@ -158,7 +158,7 @@
                             <h3 class="text-muted">{{tarea.fecha}}</h3>
                         </div>
                           <!-- Boton para dirigir a la tarea -->
-                        <a href="#" class="btn bg-transparent stretched-link" ></a>
+                        <a [routerLink]="['/tareas_alumno']"  class="btn bg-transparent stretched-link" ></a>
                     </div>
                 </div>
             </div>

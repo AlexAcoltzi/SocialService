@@ -73,10 +73,27 @@
                                         <label for="exampleFormControlTextarea1" class="form-label">Escribe las instrucciones</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
+
+                                    <section class="container mb-3">
+                                        <div class="row">
+                                          <label for="date" class="col-4 col-form-label">Fecha de Entrega</label>
+                                          <div class="col-5">
+                                            <div class="input-group date" id="datepicker">
+                                              <input type="text" class="form-control" id="date"/>
+                                              <span class="input-group-append">
+                                                <span class="input-group-text bg-light d-block">
+                                                  <i class="fa fa-calendar"></i>
+                                                </span>
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      
+                                      </section>
+
                                     <div class="mb-3">
                                          <input class="form-control" type="file" id="formFileMultiple" multiple>
                                     </div>
-    
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -104,7 +121,7 @@
 
                   <div class="text-end mt-2">
                      <!--Debe direccionar a la pagina de tareas -->    
-                    <a href="#" class="card-link text-end">Ver Tareas</a>
+                    <a [routerLink]="['/lista_tareas_maestro']" class="card-link text-end">Ver Tareas</a>
                   </div>
                   
                 </div>
@@ -223,7 +240,7 @@
                             <h3 class="text-muted">{{tarea.fecha}}</h3>
                         </div>
                           <!-- Boton para dirigir a la tarea -->
-                        <a href="#" class="btn bg-transparent stretched-link" ></a>
+                        <a [routerLink]="['/tareas_maestro']"  class="btn bg-transparent stretched-link" ></a>
                     </div>
                 </div>
             </div>
