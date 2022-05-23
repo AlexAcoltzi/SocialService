@@ -1,11 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-    require_once("ConexionBD.php");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-    //$base64 = $_POST['img'];
-    //$usuario = $_POST['usuario'];
+require_once("ruta.php");
+
+
     $json = file_get_contents('php://input');
     $params = json_decode($json);
     $base64 = $params->img;
@@ -13,24 +12,23 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
     $base_to_php = explode(',', $base64);
     $data = base64_decode($base_to_php[1]);
-    $path_Generico = getcwd();
-    $filepath =$path_Generico.'\User'.$usuario.'.png';
+    //$path_Generico = getcwd();
+    $path_img = "/User/".$usuario.".png";
+    //$filepath = $path_Generico.''.$path_img;
+    $ruta = ruta();
 
-    file_put_contents($filepath, $data);
+    $path_database = $ruta.''.$path_img;
 
-    echo $filepath;
+    file_put_contents($path_database, $data);
 
-
+    require_once("ConexionBD.php");
     $conexion = conexion();
-    if(isset($filepath)){
-        mysqli_query($conexion,"UPDATE Usuario SET  Perfil = $filepath
-                                WHERE idUsuario = $usuario");
+    if(isset($base64)){
+       if(mysqli_query($conexion, "UPDATE usuario SET Perfil = '$path_database' WHERE idUsuario = '$usuario'")){
         $json_response = ['Respuesta' => 'Exitoso'];
         $json = json_encode($json_response);
         echo $json;
-
-
         header('Content-Type: application/json');
-
+       }
     }
 ?>

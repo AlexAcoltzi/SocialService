@@ -68,4 +68,11 @@ export class ConsultasService {
       return localStorage.getItem('data')!= null;
   }
 
+  subirFoto(archivo:any){
+    return this.http.post<any>(this.baseURL+"subirFoto.php",JSON.stringify(archivo))
+    .pipe(map(User=>{
+      return User;
+    }));
+  }
+
 }
