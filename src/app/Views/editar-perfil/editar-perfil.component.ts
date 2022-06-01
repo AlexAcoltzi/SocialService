@@ -72,6 +72,7 @@ MandarFoto(){
           showConfirmButton: false,
           timer: 2500
         });
+        this.abrirModal();
         setTimeout(
           function(){ 
           location.reload(); 
