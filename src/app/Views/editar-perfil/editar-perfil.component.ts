@@ -4,6 +4,7 @@ import { AuthService } from '../../Services/auth/auth.service';
 import { EditarService } from 'app/Services/editar.service';
 import { ConsultasService } from 'app/Services/consultas.service';
 import Swal from 'sweetalert2';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-editar-perfil',
