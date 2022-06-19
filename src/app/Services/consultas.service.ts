@@ -14,15 +14,21 @@ export class ConsultasService {
   //Observavle de tipo comportamiento para realizar cambios en el front navBar
   userLogged:BehaviorSubject<boolean>;
   name:BehaviorSubject<string>;
+  foto: BehaviorSubject<string>;
 
   constructor(private http: HttpClient) {
     this.userLogged = new BehaviorSubject(this.validator());
     if (this.validator()) {
       const data = this.getData();
       this.name = new BehaviorSubject(`${data.nombre} ${data.paterno} ${data.materno}`)
+      this.foto = new BehaviorSubject(data.perfil);
+      if (data.tipo == "maestro") {
+        this.SaveCursosData(data.matricula);
+      }
     }
     else{
       this.name = new BehaviorSubject("");
+      this.foto = new BehaviorSubject("");
     }
    }
 
@@ -44,6 +50,7 @@ export class ConsultasService {
     this.userLogged.next(true);
     const datos = this.getData();
     this.name.next(`${datos.nombre} ${datos.paterno} ${datos.materno}`);
+    this.foto.next(datos.perfil);
   }
 
   //Funcion para obtener los datos almacenados en el localStorage
@@ -60,6 +67,7 @@ export class ConsultasService {
   deleteData(){
     this.userLogged.next(false);
     this.name.next("");
+    this.foto.next("");
     localStorage.removeItem('data');
   }
 
@@ -73,6 +81,26 @@ export class ConsultasService {
     .pipe(map(User=>{
       return User;
     }));
+  }
+
+  AgregarCurso(datos:any){
+    return this.http.post<any>(this.baseURL+"AgregarCurso.php",JSON.stringify(datos))
+    .pipe(map(result=>{
+      console.log(result);
+      return result;
+    }))
+  }
+
+  SaveCursosData(matricula:any){
+    return this.http.post<any>(this.baseURL+"ObtenerCursos.php",{matricula})
+    .pipe(map(Clase=>{
+      console.log(Clase[0]);
+      return Clase;
+    }))
+  }
+
+  getClases(){
+    return JSON.parse(localStorage.getItem('clases')!);
   }
 
 }
