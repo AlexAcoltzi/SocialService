@@ -23,9 +23,16 @@
                 echo $json;
             }
         }
+        else {
+                class Result{}
+                $response = new Result();
+                $response->resultado = 'Error';
+                $response->mensaje = mysqli_error($conexion);
+                echo json_encode($response);
+        }
     }
     else {
-        class Result{}
+            class Result{}
                 $response = new Result();
                 $response->resultado = 'Error';
                 $response->mensaje = 'No paso de parametros';

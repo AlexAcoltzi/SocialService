@@ -15,6 +15,7 @@ export class NavBarComponent implements OnInit {
   public userLogged:any; //Variable para verificar si hay un usuario logeado
   public data:any; // Variable para almacenar los datos del usuario
   public name:any; // Variable para almacenar el nombre del usuario
+  public picture: any;
 
   ngOnInit(): void {
     this.ajax.userLogged.subscribe((valuData)=>{
@@ -23,6 +24,9 @@ export class NavBarComponent implements OnInit {
     );
     this.ajax.name.subscribe((nom)=>{
       this.name = nom;
+    })
+    this.ajax.foto.subscribe((foto)=>{
+      this.picture = foto;
     })
   }
   logOut(){
