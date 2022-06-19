@@ -23,13 +23,5 @@ export class EstudianteComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
-  configurar(): void{
- 
-          this._router.navigateByUrl('/editarPerfil')
-         
-        
-  }
 }
 
