@@ -32,10 +32,18 @@ export class CursoMaestroComponent implements OnInit {
   ]
 
   constructor() { }
+  Instrucciones:any;
+  fecha:any;
 
   ngOnInit(): void {
 
     
+  }
+
+  crearTarea(uno:any,dos:any, tres:any){
+    console.log(uno);
+    console.log(dos);
+    console.log(tres);
   }
 
 }
