@@ -70,8 +70,13 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="mb-3">
+                                        <label for="titulo" class="col-4 col-form-label">Titulo</label>
+                                        <input type="text" class="form-control" #titulo/>                                      
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Escribe las instrucciones</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea class="form-control" #exampleFormControlTextarea1 rows="3"></textarea>
                                     </div>
 
                                     <section class="container mb-3">
@@ -79,7 +84,7 @@
                                           <label for="date" class="col-4 col-form-label">Fecha de Entrega</label>
                                           <div class="col-5">
                                             <div class="input-group date" id="datepicker">
-                                              <input type="text" class="form-control" id="date"/>
+                                              <input type="text" class="form-control" #fecha/>
                                               <span class="input-group-append">
                                                 <span class="input-group-text bg-light d-block">
                                                   <i class="fa fa-calendar"></i>
@@ -97,7 +102,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-primary" (click) = 'crearTarea(titulo.value, exampleFormControlTextarea1.value, fecha.value)'>Guardar</button>
                                 </div>
                             </div>
                             </div>

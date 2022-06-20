@@ -23,7 +23,7 @@ export class ConsultasService {
       this.name = new BehaviorSubject(`${data.nombre} ${data.paterno} ${data.materno}`)
       this.foto = new BehaviorSubject(data.perfil);
       if (data.tipo == "maestro") {
-        this.SaveCursosData(data.matricula);
+        this.getCursos(data.matricula);
       }
     }
     else{
@@ -91,12 +91,17 @@ export class ConsultasService {
     }))
   }
 
-  SaveCursosData(matricula:any){
-    return this.http.post<any>(this.baseURL+"ObtenerCursos.php",{matricula})
-    .pipe(map(Clase=>{
-      console.log(Clase[0]);
-      return Clase;
+  getCursos(matricula:any){
+    return this.http.post<any>(this.baseURL+"ObtenerCursos.php",JSON.stringify(matricula))
+    .pipe(map(User=>{
+      console.log("Clase" + User);
+      this.saveCursos(JSON.stringify(User));
+      return User;
     }))
+  }
+
+  saveCursos(data:any){
+    localStorage.setItem('Cursos', data);
   }
 
   getClases(){
